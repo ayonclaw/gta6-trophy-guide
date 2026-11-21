@@ -1,25 +1,42 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GTA VI trophy checklist</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172b2a">
+  <meta name="description" content="An offline, cited field guide and personal tracker for all 55 GTA VI trophies.">
+  <title>Leonida Fieldnotes — GTA VI trophy guide</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <h1>GTA VI trophy checklist</h1>
-  <p id="progress">0 of 55 earned</p>
-</header>
-<div class="controls">
-  <label>Grade <select id="grade"><option value="all">All</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
-  <button id="export" type="button">Export progress</button>
-  <label class="import">Import progress <input id="import" type="file" accept="application/json"></label>
-</div>
-<table>
-  <thead><tr><th>Earned</th><th>Trophy</th><th>Grade</th><th>How to get it</th></tr></thead>
-  <tbody id="rows"></tbody>
-</table>
-<script type="module" src="app.js"></script>
+  <a class="skip" href="#workspace">Skip to trophies</a>
+  <aside class="sidebar">
+    <a class="brand" href="./" aria-label="Leonida Fieldnotes home"><span class="brand-mark">LF<span>↗</span></span><span>LEONIDA<br>FIELDNOTES<span class="brand-sub">THE GTA VI TROPHY GUIDE</span></span></a>
+    <div class="edition">PS5 EDITION <span>001 / OFFLINE</span></div>
+    <p class="nav-label">YOUR FIELD GUIDE</p>
+    <nav aria-label="Guide views">
+      <button class="nav-button active" data-view="tracker"><span>▦</span> Trophy tracker <b>55</b></button>
+      <button class="nav-button" data-view="roadmap"><span>↗</span> Platinum roadmap</button>
+      <button class="nav-button" data-view="missable"><span>!</span> Missable watch <b>1</b></button>
+    </nav>
+    <div class="sidebar-note"><span class="tiny-label">THE PLAN</span><strong>Enjoy the story.<br>Leave nothing behind.</strong><p>One precaution in Chapter 1.<br>Everything else, at your pace.</p></div>
+    <div class="save-tools"><span class="nav-label">YOUR PROGRESS, YOUR FILE</span><button id="export">↓ Export backup</button><button id="import-button">↑ Import & merge</button><input id="import" type="file" accept=".json,application/json" hidden><p>Imports only add ticks.<br>No account. No sync. No ads.</p></div>
+    <div class="local-state"><i></i><span id="save-state">Saved on this device</span></div>
+  </aside>
+  <main id="workspace" tabindex="-1">
+    <header class="topbar"><span>GRAND THEFT AUTO VI <span class="top-separator">/</span> FIELD GUIDE</span><div><span id="preview-label" hidden>DEMO PROGRESS</span><span class="offline-dot">●</span> LOCAL-FIRST <span class="platform">PS5</span></div></header>
+    <section class="intro"><div><p class="eyebrow">55 TROPHIES. ZERO DISTRACTIONS.</p><h1 id="page-title">Your platinum, planned.</h1><p id="page-subtitle">A clear path through Leonida. A little less guesswork.</p></div><div class="hero-stamp" aria-hidden="true"><span>LEONIDA</span><b>VI</b><span>FIELD APPROVED*<small>*GUIDES, NOT GAMEPLAY</small></span></div></section>
+    <section class="progress-panel" aria-label="Trophy progress"><div class="progress-number"><strong id="earned-total">0</strong><span>/ 55<br><small>EARNED</small></span></div><div class="progress-track"><div><b id="progress-heading">The road starts here</b><span id="percent">0%</span></div><div id="progress-bar" role="progressbar" aria-label="Trophies earned" aria-valuemin="0" aria-valuemax="55" aria-valuenow="0"><i></i></div></div><div id="grade-counts"></div></section>
+    <button id="risk-banner" class="risk-banner"><span class="risk-icon">!</span><span><b>Before you leave Chapter 1</b> <span class="risk-copy">Take the optional meditation. One possible missable, not yet confirmed.</span></span><span>READ NOTE ↗</span></button>
+    <section class="toolbar" aria-label="Tracker filters"><div class="search-wrap"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search trophies, places, activities…" aria-label="Search trophies"><kbd>/</kbd></div><label class="spoiler-control"><input id="spoilers" type="checkbox" checked><span class="switch"></span><span>Spoiler shield <b id="spoiler-status">ON</b></span></label></section>
+    <section class="filter-line" aria-label="Trophy categories"><div id="kind-filters"><button data-kind="all" class="active">All trophies</button><button data-kind="story">Story</button><button data-kind="side">Activities</button><button data-kind="collectible">Collectibles</button><button data-kind="combat">Combat & heists</button><button data-kind="online">Online</button><button data-kind="trophy-hub">Completion</button></div><div class="selects"><label class="sr-only" for="grade">Trophy grade</label><select id="grade"><option value="all">All grades</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select><label class="sr-only" for="status">Earned status</label><select id="status"><option value="all">Any status</option><option value="remaining">Remaining</option><option value="earned">Earned</option></select></div></section>
+    <div class="content-heading"><span id="result-count">55 TROPHIES</span><button id="clear-filters" hidden>Clear filters ×</button><span id="content-hint">CHECK TO LOG · SELECT TO READ</span></div>
+    <div class="workspace-grid"><section id="results" aria-label="Trophies"></section><aside id="detail" aria-label="Trophy detail"></aside></div>
+    <footer>INDEPENDENT FIELD GUIDE <span>Original guidance · Sources beside every trophy · No game artwork</span></footer>
+  </main>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <noscript>This local guide needs JavaScript enabled. All 55 guides are also readable in data/trophies.json.</noscript>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
